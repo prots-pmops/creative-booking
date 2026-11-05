@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Team — Daily Tasks &amp; Bookings</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#FAF7F0;font-family:'Work Sans',sans-serif;color:#2b2b2b}
+h1,h2,h3{font-family:'Oswald',sans-serif;letter-spacing:.01em}
+h1,h2,h3,#dashboard h1,#dashboard h2,#dashboard h3,#dashboard summary{text-transform:uppercase}
+.shell{min-height:100vh;max-width:1200px;margin:0 auto}
+.main{padding:20px 22px;min-width:0;max-width:1200px;margin:0 auto;width:100%}
+.topbar{display:flex;gap:12px;align-items:center}
+.search{flex:1;background:#fff;border:1px solid #E5DDC8;border-radius:999px;padding:10px 16px;color:#888;min-width:0}
+.refresh{background:#768E78;color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;font-family:'Work Sans',sans-serif;flex-shrink:0}
+#updated{color:#888;font-size:12px;margin:0 0 8px}
+#status{color:#888;font-size:13px}
+#dashboard img,#dashboard svg{max-width:100%;height:auto}
+#dashboard>div{max-width:100%}
+@media(max-width:900px){
+  .main{padding:16px}
+  #dashboard>div>div{flex-wrap:wrap}
+}
+@media(max-width:640px){
+  .main{padding:12px}
+  .topbar{flex-wrap:wrap}
+  .search{flex-basis:100%}
+  #dashboard{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<main class="main">
+<div class="topbar">
+<div class="search">Search a person, client or task…</div>
+<button class="refresh" onclick="location.reload()">↻ Refresh</button>
+</div>
+<p id="updated">Loading latest data…</p>
+<div id="dashboard"><p id="status">Loading…</p></div>
+</main>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
