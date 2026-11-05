@@ -24,8 +24,7 @@ h1,h2,h3,#dashboard h1,#dashboard h2,#dashboard h3,#dashboard summary{text-trans
 .overview{display:flex;gap:14px;flex-wrap:wrap;margin:20px 0}
 .stat{flex:1 1 200px;border-radius:16px;padding:18px;background:#fff;border:1px solid #E5DDC8}
 .stat .big{font-family:'Oswald',sans-serif;font-size:34px}
-.cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-#updated{color:#888;font-size:12px;margin:0 0 8px}
+.cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;width:100%}
 #status{color:#888;font-size:13px}
 #dashboard img,#dashboard svg{max-width:100%;height:auto}
 #dashboard>div{max-width:100%}
@@ -50,7 +49,6 @@ h1,h2,h3,#dashboard h1,#dashboard h2,#dashboard h3,#dashboard summary{text-trans
 <div class="search">Search a person, client or task…</div>
 <button class="refresh" onclick="location.reload()">↻ Refresh</button>
 </div>
-<p id="updated">Loading latest data…</p>
 <div id="dashboard"><p id="status">Loading…</p></div>
 </main>
 </div>
