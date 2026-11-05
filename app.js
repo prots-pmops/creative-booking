@@ -5,6 +5,11 @@ fetch('./data/data.json?v=' + Date.now(), { cache: 'no-store' })
   .then(function (r) { if (!r.ok) throw new Error('data.json not found: ' + r.status); return r.json(); })
   .then(function (data) {
     document.getElementById('dashboard').innerHTML = data.html;
+    // Time-of-day greeting, Singapore time: morning / afternoon / evening
+    var hour = Number(new Intl.DateTimeFormat('en-SG', { timeZone: 'Asia/Singapore', hour: 'numeric', hour12: false }).format(new Date()));
+    var part = hour < 12 ? 'morning' : (hour < 18 ? 'afternoon' : 'evening');
+    var greet = document.getElementById('creative-greet');
+    if (greet) greet.textContent = 'Good ' + part + ', creative team!';
     var el = document.getElementById('updated');
     if (el) el.textContent = 'Last updated: ' + (data.generated_at || '') + ' · Week: ' + (data.week || '');
   })
