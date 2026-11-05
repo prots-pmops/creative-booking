@@ -10,8 +10,17 @@ fetch('./data/data.json?v=' + Date.now(), { cache: 'no-store' })
     var part = hour < 12 ? 'morning' : (hour < 18 ? 'afternoon' : 'evening');
     var greet = document.getElementById('creative-greet');
     if (greet) greet.textContent = 'Good ' + part + ', creative team!';
-    var el = document.getElementById('updated');
-    if (el) el.textContent = 'Last updated: ' + (data.generated_at || '') + ' · Week: ' + (data.week || '');
+    // Live date & time (Singapore) — the design file's own clock script is not
+    // carried into data.json, so this runs here instead.
+    function tick() {
+      var now = new Date();
+      var date = new Intl.DateTimeFormat('en-SG', { timeZone: 'Asia/Singapore', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(now);
+      var time = new Intl.DateTimeFormat('en-SG', { timeZone: 'Asia/Singapore', hour: '2-digit', minute: '2-digit' }).format(now);
+      var el = document.getElementById('datetime');
+      if (el) el.textContent = date + ' · ' + time + ' SGT';
+    }
+    tick();
+    setInterval(tick, 30000);
   })
   .catch(function (err) {
     var el = document.getElementById('status');
