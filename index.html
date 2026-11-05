@@ -15,6 +15,16 @@ h1,h2,h3,#dashboard h1,#dashboard h2,#dashboard h3,#dashboard summary{text-trans
 .topbar{display:flex;gap:12px;align-items:center}
 .search{flex:1;background:#fff;border:1px solid #E5DDC8;border-radius:999px;padding:10px 16px;color:#888;min-width:0}
 .refresh{background:#768E78;color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;font-family:'Work Sans',sans-serif;flex-shrink:0}
+/* Styles for the content loaded from data/data.json (its own <style> is not carried over) */
+.wrap{max-width:1200px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:28px 16px 12px}
+.header h1{font-size:42px;margin:0}
+.quote{font-style:italic;color:#768E78;font-size:17px;margin:12px 0 4px}
+.datetime{color:#777;font-size:15px}
+.overview{display:flex;gap:14px;flex-wrap:wrap;margin:20px 0}
+.stat{flex:1 1 200px;border-radius:16px;padding:18px;background:#fff;border:1px solid #E5DDC8}
+.stat .big{font-family:'Oswald',sans-serif;font-size:34px}
+.cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
 #updated{color:#888;font-size:12px;margin:0 0 8px}
 #status{color:#888;font-size:13px}
 #dashboard img,#dashboard svg{max-width:100%;height:auto}
@@ -28,6 +38,8 @@ h1,h2,h3,#dashboard h1,#dashboard h2,#dashboard h3,#dashboard summary{text-trans
   .topbar{flex-wrap:wrap}
   .search{flex-basis:100%}
   #dashboard{font-size:14px}
+  .header h1{font-size:30px}
+  .wrap{padding:12px}
 }
 </style>
 </head>
