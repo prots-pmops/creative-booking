@@ -34,6 +34,14 @@ var bridge = (window.hatchWidget && window.hatchWidget.getState) ? window.hatchW
 if (bridge) { try { var s = bridge.getState({person:"Renny", month:"2026-11"}); if (s && s.person) calState = s; } catch(e){} }
 function saveCal(){ if (bridge) { try { bridge.setState(calState); } catch(e){} } }
 function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function avatarInner(p){
+  if (CAL.photos && CAL.photos[p]) return '<img src="'+CAL.photos[p]+'" alt="'+esc(p)+'">';
+  if (CAL.cats && CAL.cats[p]) return CAL.cats[p];
+  return INITIALS[p];
+}
+function avatarBg(p){
+  return (CAL.photos && CAL.photos[p]) ? "transparent" : BG[p];
+}
 function renderSide(){
   var html = "";
   Object.keys(CAL.groups).forEach(function(g){
@@ -41,7 +49,7 @@ function renderSide(){
     CAL.groups[g].forEach(function(p){
       var s = CAL.side[p];
       html += '<div class="person'+(calState.person===p?" active":"")+'" data-p="'+esc(p)+'">'
-        + '<div class="avatar" style="background:'+BG[p]+'">'+INITIALS[p]+'</div>'
+        + '<div class="avatar" style="background:'+avatarBg(p)+'">'+avatarInner(p)+'</div>'
         + '<div><b>'+esc(p)+'</b><span>'+esc(CAL.roles[p])+'</span><span>'+s.load+'% this week</span></div>'
         + '<div class="meta"><div class="sm">'+s.smiley+' '+s.today_n+'</div>'
         + (s.overdue ? '<div class="ov">'+s.overdue+' overdue</div>' : '<div class="ov" style="color:#888">clear</div>')
@@ -54,8 +62,10 @@ function renderSide(){
 function renderCal(){
   var p = calState.person;
   var parts = calState.month.split("-"); var y = parseInt(parts[0],10), m = parseInt(parts[1],10)-1;
-  document.getElementById("dAvatar").textContent = INITIALS[p];
-  document.getElementById("dAvatar").style.background = BG[p];
+  var dav = document.getElementById("dAvatar");
+  if (CAL.photos && CAL.photos[p]) { dav.innerHTML = '<img src="'+CAL.photos[p]+'" alt="'+esc(p)+'">'; dav.style.background = "transparent"; }
+  else if (CAL.cats && CAL.cats[p]) { dav.textContent = CAL.cats[p]; dav.style.background = BG[p]; }
+  else { dav.textContent = INITIALS[p]; dav.style.background = BG[p]; }
   document.getElementById("dName").textContent = p;
   document.getElementById("dRole").textContent = CAL.roles[p];
   var key = m===9?"oct":m===10?"nov":"dec";
