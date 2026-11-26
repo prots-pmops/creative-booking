@@ -81,7 +81,7 @@ function renderCal(){
     var tlist = (CAL.tasks[p] && CAL.tasks[p][ds]) || [];
     var slist = (CAL.shoots[p] && CAL.shoots[p][ds]) || [];
     var isWknd = [0,6].indexOf(new Date(y,m,day).getDay()) !== -1;
-    var isToday = ds === "2026-11-25";
+    var isToday = ds === "2026-11-26";
     var inner = '<span><b>'+day+'</b>'+(isWknd?' <span class="wknd">· weekend</span>':'')+'</span>';
     slist.forEach(function(s){ inner += '<div class="shoot">🎬 '+esc(s.title)+'<br><span style="font-weight:400">'+esc(s.time)+(s.note?" · "+esc(s.note):"")+'</span></div>'; });
     (CAL.leave[p]||[]).forEach(function(lv){ if (ds>=lv[0] && ds<=lv[1]) inner += '<div class="leave">🏖️ '+esc(lv[2])+' — leave / away, do not book</div>'; });
@@ -89,7 +89,7 @@ function renderCal(){
     (CAL.bookings[p] && CAL.bookings[p][ds] || []).forEach(function(b){ inner += '<div class="booking">'+esc(b)+'</div>'; });
     if (CAL.ph && CAL.ph[ds]) inner += '<div class="ph">🎉 '+esc(CAL.ph[ds])+' — public holiday</div>';
     tlist.forEach(function(t){
-      var isOver = !t.done && ds < "2026-11-25";
+      var isOver = !t.done && ds < "2026-11-26";
       inner += '<div class="task'+(t.done?" done":"")+'">'+(t.done?"✓ ":"")+esc(t.board)+' — '+esc(t.sub)+'<br><span style="color:#555">'+esc(t.status)+(t.hrs?" · "+esc(t.hrs)+"h":"")+(isOver?' · <span class="ovtag">OVERDUE</span>':"")+'</span></div>';
     });
     (CAL.cleared[p] && CAL.cleared[p][ds] || []).forEach(function(cl){
